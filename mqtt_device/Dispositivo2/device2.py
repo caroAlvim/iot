@@ -7,7 +7,7 @@ from definitions2 import user, password, client_id, server, port
 
 def message(client, userdata, msg):
     vetor = msg.payload.decode().split(',')
-    heater('on' if vetor[1] == '1' else 'off')
+    aquecedor('on' if vetor[1] == '1' else 'off')
     client.publish(f'v1/{user}/things/{client_id}/response', f'ok,{vetor[0]}')
     print(vetor)
 
