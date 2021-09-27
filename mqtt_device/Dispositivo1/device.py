@@ -1,17 +1,17 @@
-import paho.mqtt.client as mqtt
+mport paho.mqtt.client as mqtt
 import time
-from hal2 import temperature, humidity, heater
-from definitions2 import user, password, client_id, server, port
+from hal import temperature, humidity, heater
+from definitions import user, password, client_id, server, port
 
 
-# device 2
+# device 1
 def message(client, user, msg):
     vetor = msg.payload.decode().split(',')
     heater('on' if vetor[1] == '1' else 'off')
     client.publish(f'v1/{user}/things/{client_id}/response', f'ok,{vetor[0]}')
     print(vetor)
 
-# 
+#
 client = mqtt.Client(client_id)
 client.username_pw_set(user, password)
 client.connect(server, port)
